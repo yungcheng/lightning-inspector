@@ -35,6 +35,10 @@
 		"message": "Storage",
 		"description": "Tab inside the inspector that shows what we're storing and caching on the different client side data stores."
 	},
+	"tabs_lds": {
+		"message": "LDS",
+		"description": "Tab inside the inspector that shows what records are cached by LDS."
+	},
 	"tabs_help": {
 		"message": "Help",
 		"description": "Tooltip for the dropdown that shows links to different portions of documentation."

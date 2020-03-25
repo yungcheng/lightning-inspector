@@ -8,6 +8,7 @@ import AuraInspectorComponentView from './AuraInspectorComponentView';
 import AuraInspectorPerformanceView from './AuraInspectorPerformanceView';
 import AuraInspectorDefinitionsList from './AuraInspectorDefinitionsList.js';
 import AuraInspectorStorageView from './AuraInspectorStorageView.js';
+import LightningInspectorLDSView from './LightningInspectorLDSView';
 import AuraInspectorTransactionGrid from './AuraInspectorTransactionGrid.js';
 import AuraInspectorTransactionPanel from './AuraInspectorTransactionPanel.js';
 import AuraInspectorTransactionView from './AuraInspectorTransactionView.js';
@@ -139,6 +140,7 @@ function AuraInspectorDevtoolsPanel() {
             this.addPanel('event-log', new AuraInspectorEventLog(this));
             this.addPanel('actions', new AuraInspectorActionsView(this));
             this.addPanel('storage', new AuraInspectorStorageView(this));
+            this.addPanel('lds', new LightningInspectorLDSView(this));
 
             // Sidebar Panel
             // The AuraInspectorComponentView adds the sidebar class
