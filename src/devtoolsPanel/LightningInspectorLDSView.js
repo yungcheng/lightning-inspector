@@ -31,6 +31,11 @@ export default function LightningInspectorLDSView(devtoolsPanel) {
         // refresh button
         var refreshButton = tabBody.querySelector('#refresh-button');
         refreshButton.addEventListener('click', RefreshButton_OnClick.bind(this));
+
+        const initCommand = `
+            window.__ldsDebug__ = Object.create(null);
+        `;
+        chrome.devtools.inspectedWindow.eval(initCommand);
     };
 
     this.render = function() {
@@ -47,13 +52,16 @@ export default function LightningInspectorLDSView(devtoolsPanel) {
             var lds = ldsDef[ldsInstance];
             if (lds._version === '222') {
                 console.info('LDS222: %o', lds.adsBridge._ldsCache);
+                window.__ldsDebug__.lds = window.__ldsDebug__.lds || lds.adsBridge._ldsCache;
             } else if (lds.adsBridge.lds) {
                 console.info('LDS: %o', lds.adsBridge.lds);
+                window.__ldsDebug__.lds = window.__ldsDebug__.lds || lds.adsBridge.lds;
             }
             var adsDef = mds['markup://force:recordLibrary'];
             var adsInstance = Object.keys(adsDef).find(key => { return adsDef[key] !== null && !Array.isArray(adsDef[key]) && typeof adsDef[key] === 'object'; })
             var ads = adsDef[adsInstance];
             console.info('ADS: %o', ads);
+            window.__ldsDebug__.ads = window.__ldsDebug__.ads || ads;
         `;
         chrome.devtools.inspectedWindow.eval(ldsCommand);
     };
